@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { View } from "react-native"
+import { Button } from "../../../compontens/Button";
 import { FormInput } from "../../../compontens/FormInput"
 
 const Login = () => {
@@ -23,6 +24,10 @@ const Login = () => {
         value: password,
         setVisible,
         visible
+      }}/>
+      <Button {...{
+        title: "Entrar",
+        type: "primary"
       }}/>
     </View>
   )
