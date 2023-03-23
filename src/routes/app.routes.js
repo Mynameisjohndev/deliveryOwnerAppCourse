@@ -3,10 +3,10 @@ import { Home } from "../screens/app/Home";
 
 const AppStack = createNativeStackNavigator();
 
-export const AppScreens = () =>{
-  return(
-    <AppStack.Navigator>
-      <AppStack.Screen name="home" component={ Home }  />
+export const AppScreens = () => {
+  return (
+    <AppStack.Navigator screenOptions={{ headerShown: false }}>
+      <AppStack.Screen name="home" component={Home} />
     </AppStack.Navigator>
   )
 }

@@ -9,7 +9,7 @@ export default function App() {
   return (
     <ThemeProvider theme={themes}>
       <NavigationContainer>
-        <StatusBar style="auto" />
+        <StatusBar style="inverted" />
         <Routes />
       </NavigationContainer>
     </ThemeProvider>
