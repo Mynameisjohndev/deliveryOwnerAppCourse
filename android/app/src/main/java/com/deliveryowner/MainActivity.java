@@ -1,4 +1,4 @@
-package com.delivery;
+package com.deliveryowner;
 
 import android.os.Build;
 import android.os.Bundle;
