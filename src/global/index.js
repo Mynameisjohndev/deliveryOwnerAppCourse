@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const ContainerBackground = styled.SafeAreaView`
+export const BackgroundContainer = styled.SafeAreaView`
   flex: 1;
   background-color: ${({theme})=>theme.COLORS.BACKGROUND};
   align-items: center;
@@ -13,7 +13,7 @@ export const Title = styled.Text`
   align-self: flex-start;
   color: ${({theme})=>theme.COLORS.TEXT};
 `
-export const ContainerForm = styled.View`
+export const FormContainer = styled.View`
   width: 90%;
   align-items: center;
   justify-content: center;

@@ -3,7 +3,7 @@ import { Button } from "../../../compontens/Button";
 import { FormInput } from "../../../compontens/FormInput"
 import { KeepConnected } from "../../../compontens/KeepConnected";
 import { useContextApp } from "../../../context";
-import { ContainerBackground, ContainerForm, Title } from "../../../global";
+import { BackgroundContainer, FormContainer, Title } from "../../../global";
 
 const Login = () => {
   const [email, setEmail] = useState("owner@gmail.com");
@@ -11,11 +11,11 @@ const Login = () => {
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(false);
 
-  const { handleLoginUser } = useContextApp();
+  const { handleLoginUser, authLoading } = useContextApp();
 
   return (
-    <ContainerBackground>
-      <ContainerForm>
+    <BackgroundContainer>
+      <FormContainer>
         <Title>Entrar</Title>
         <FormInput {...{
           hasIcon: false,
@@ -33,13 +33,14 @@ const Login = () => {
         }} />
         <Button {...{
           title: "Entrar",
+          loading: authLoading,
           onPress: () => handleLoginUser(email, password, active)
         }} />
         <KeepConnected{...{
           active, setActive
         }} />
-      </ContainerForm>
-    </ContainerBackground>
+      </FormContainer>
+    </BackgroundContainer>
   )
 }
 

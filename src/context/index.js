@@ -13,7 +13,6 @@ const ContextAppProvider = ({ children }) => {
   const { auth } = firebase;
 
   const handleLoginUser = async (email, password, keepConnected) => {
-    console.log(keepConnected);
     setAuthLoading(true);
     auth()
       .signInWithEmailAndPassword(email, password)
