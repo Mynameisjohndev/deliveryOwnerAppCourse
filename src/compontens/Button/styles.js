@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const ButtonContainer = styled.View`
+export const ButtonContainer = styled.TouchableOpacity`
   width: 100%;
   height: 70px;
   padding: 6px 16px;

@@ -1,4 +1,4 @@
-import {  useState } from "react"
+import { useState } from "react"
 import { Button } from "../../../compontens/Button";
 import { FormInput } from "../../../compontens/FormInput"
 import { KeepConnected } from "../../../compontens/KeepConnected";
@@ -6,14 +6,12 @@ import { useContextApp } from "../../../context";
 import { ContainerBackground, ContainerForm, Title } from "../../../global";
 
 const Login = () => {
-  const [email, setEmail] = useState("teste@gmail.com");
-  const [password, setPassword] = useState("213212312");
+  const [email, setEmail] = useState("owner@gmail.com");
+  const [password, setPassword] = useState("12211221");
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(false);
 
-  const { user } = useContextApp();
-
-  console.log(user);
+  const { handleLoginUser } = useContextApp();
 
   return (
     <ContainerBackground>
@@ -34,7 +32,8 @@ const Login = () => {
           visible
         }} />
         <Button {...{
-          title: "Entrar"
+          title: "Entrar",
+          onPress: () => handleLoginUser(email, password)
         }} />
         <KeepConnected{...{
           active, setActive
