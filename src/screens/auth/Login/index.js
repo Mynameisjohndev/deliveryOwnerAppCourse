@@ -33,7 +33,7 @@ const Login = () => {
         }} />
         <Button {...{
           title: "Entrar",
-          onPress: () => handleLoginUser(email, password)
+          onPress: () => handleLoginUser(email, password, active)
         }} />
         <KeepConnected{...{
           active, setActive

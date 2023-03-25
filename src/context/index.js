@@ -1,6 +1,8 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { firebase } from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storage_user_key } from "../config";
 
 const Context = createContext({});
 
@@ -10,31 +12,56 @@ const ContextAppProvider = ({ children }) => {
 
   const { auth } = firebase;
 
-  const handleLoginUser = async (email, password) => {
+  const handleLoginUser = async (email, password, keepConnected) => {
+    console.log(keepConnected);
     setAuthLoading(true);
     auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         firestore().collection("users")
-        .where("uid", "==", res.user.uid)
-        .get()
-        .then((res)=>{
-          setUser(res.docs[0].data())
-          setAuthLoading(false);
-        })
-        .catch((err) => {
-          setAuthLoading(false);
-        })
+          .where("uid", "==", res.user.uid)
+          .get()
+          .then(async (res) => {
+            setUser(res.docs[0].data())
+            if (keepConnected) {
+              try {
+                await AsyncStorage.setItem(storage_user_key, JSON.stringify(res.docs[0].data()));
+              } catch (_) {
+                //
+              }
+            }
+            setAuthLoading(false);
+          })
+          .catch(() => {
+            setAuthLoading(false);
+          })
       })
-      .catch((err) => {
+      .catch(() => {
         setAuthLoading(false);
       })
   }
 
+  const loadAuthenticatedUser = async () => {
+    setAuthLoading(true);
+    try {
+      const responseUser = await AsyncStorage.getItem(storage_user_key);
+      if (responseUser) {
+        setUser(responseUser);
+        setAuthLoading(false);
+      }
+    } catch (_) {
+      setAuthLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadAuthenticatedUser();
+  }, [])
+
   return (
     <Context.Provider value={{
-      user, 
-      setUser, 
+      user,
+      setUser,
       handleLoginUser,
       authLoading
     }}>
