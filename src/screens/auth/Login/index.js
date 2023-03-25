@@ -2,6 +2,7 @@ import {  useState } from "react"
 import { Button } from "../../../compontens/Button";
 import { FormInput } from "../../../compontens/FormInput"
 import { KeepConnected } from "../../../compontens/KeepConnected";
+import { useContextApp } from "../../../context";
 import { ContainerBackground, ContainerForm, Title } from "../../../global";
 
 const Login = () => {
@@ -9,6 +10,10 @@ const Login = () => {
   const [password, setPassword] = useState("213212312");
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(false);
+
+  const { user } = useContextApp();
+
+  console.log(user);
 
   return (
     <ContainerBackground>
