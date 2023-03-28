@@ -45,7 +45,7 @@ const ContextAppProvider = ({ children }) => {
     try {
       const responseUser = await AsyncStorage.getItem(storage_user_key);
       if (responseUser) {
-        setUser(responseUser);
+        setUser(JSON.parse(responseUser));
         setAuthLoading(false);
       }
     } catch (_) {
