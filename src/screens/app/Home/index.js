@@ -1,11 +1,18 @@
-import { Text } from "react-native"
-import { HeaderBackgroudImage, BackgroundContainerVariant, HeaderContainer } from "../../../global"
+import { 
+  HeaderBackgroudImage, 
+  BackgroundContainerVariant, 
+  HeaderContainer, 
+  CustomContent 
+} from "../../../global"
 import Image from "../../../assets/firstbackground.png";
 import { CustomHeaderTitle } from "../../../compontens/CustomHeaderTitle";
 import { useContextApp } from "../../../context";
+import { Search } from "../../../compontens/Search";
+import { useState } from "react";
+import { Text } from "react-native";
 
 const Home = () => {
-
+  const [searchItem, setSearchItem] = useState("");
   const { user } = useContextApp();
 
   const Header = () => {
@@ -24,7 +31,15 @@ const Home = () => {
 
   return (
     <BackgroundContainerVariant>
-      <Header/>
+      <Header />
+      <CustomContent>
+        <Search {...{
+          placeholder: "Procura item ...",
+          value: searchItem,
+          onChangeText: setSearchItem
+        }}/>
+        <Text>{searchItem}</Text>
+      </CustomContent>
     </BackgroundContainerVariant>
   )
 }

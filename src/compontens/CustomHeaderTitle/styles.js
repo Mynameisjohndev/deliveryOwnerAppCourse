@@ -1,14 +1,12 @@
 import styled from "styled-components/native";
-import { Dimensions } from "react-native";
-
-const { width } = Dimensions.get("window");
 
 export const HeaderTitleContainer = styled.View`
   width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 16px;
+  padding: 32px;
+  margin-bottom:32px;
 `
 export const HeaderTitle = styled.Text`
   align-self: flex-start;

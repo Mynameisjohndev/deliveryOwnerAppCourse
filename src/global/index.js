@@ -35,3 +35,14 @@ export const HeaderBackgroudImage= styled.Image`
   position: absolute;
   opacity: 0.6;
 `
+
+export const CustomContent = styled.View`
+  height: 67%;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  bottom: 0;
+  position: absolute;
+  justify-content: space-between;
+  background-color: ${({theme})=>theme.COLORS.SECOND_BACKGROUND};
+`
