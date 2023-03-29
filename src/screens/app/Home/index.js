@@ -1,15 +1,11 @@
-import { 
-  HeaderBackgroudImage, 
-  BackgroundContainerVariant, 
-  HeaderContainer, 
-  CustomContent 
-} from "../../../global"
+import { HeaderBackgroudImage, HeaderContainer } from "../../../global"
 import Image from "../../../assets/firstbackground.png";
 import { CustomHeaderTitle } from "../../../compontens/CustomHeaderTitle";
 import { useContextApp } from "../../../context";
 import { Search } from "../../../compontens/Search";
 import { useState } from "react";
 import { Text } from "react-native";
+import { ScreenTemplate } from "../../../compontens/ScreenTemplate";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -30,17 +26,18 @@ const Home = () => {
   }
 
   return (
-    <BackgroundContainerVariant>
-      <Header />
-      <CustomContent>
-        <Search {...{
-          placeholder: "Procura item ...",
-          value: searchItem,
-          onChangeText: setSearchItem
-        }}/>
-        <Text>{searchItem}</Text>
-      </CustomContent>
-    </BackgroundContainerVariant>
+    <ScreenTemplate {...{
+      children: <Header />,
+      secondChildren:
+        <>
+          <Search {...{
+            placeholder: "Procura item ...",
+            value: searchItem,
+            onChangeText: setSearchItem
+          }} />
+          <Text>{searchItem}</Text>
+        </>
+    }} />
   )
 }
 
