@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const BackgroundContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme})=>theme.COLORS.BACKGROUND};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
   align-items: center;
   justify-content: center;
 `
@@ -15,7 +15,7 @@ export const Title = styled.Text`
   margin-bottom: 25px;
   font-weight: bold;
   align-self: flex-start;
-  color: ${({theme})=>theme.COLORS.TEXT};
+  color: ${({ theme }) => theme.COLORS.TEXT};
 `
 export const FormContainer = styled.View`
   width: 90%;
@@ -29,7 +29,7 @@ export const HeaderContainer = styled.View`
   align-items: flex-start;
   justify-content: flex-end;
 `
-export const HeaderBackgroudImage= styled.Image`
+export const HeaderBackgroudImage = styled.Image`
   height: 100%;
   width: 100%;
   position: absolute;
@@ -44,5 +44,37 @@ export const CustomContent = styled.View`
   bottom: 0;
   position: absolute;
   justify-content: space-between;
-  background-color: ${({theme})=>theme.COLORS.SECOND_BACKGROUND};
+  background-color: ${({ theme }) => theme.COLORS.SECOND_BACKGROUND};
 `
+
+export const CustomFlatList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    paddingVertical: 20
+  }
+})`
+
+`
+export const Card = styled.View`
+  width: 80%;
+  height: 100px;
+  border-radius: 14px;
+  margin-bottom: 8px;
+  background-color: blue;
+  align-self: center;
+`
+
+export const FloatButton = styled.TouchableOpacity`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: red;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 16px;
+`
+
+
+
+
