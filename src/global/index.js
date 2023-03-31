@@ -52,17 +52,7 @@ export const CustomFlatList = styled.FlatList.attrs({
   contentContainerStyle: {
     paddingVertical: 20
   }
-})`
-
-`
-export const Card = styled.View`
-  width: 80%;
-  height: 100px;
-  border-radius: 14px;
-  margin-bottom: 8px;
-  background-color: blue;
-  align-self: center;
-`
+})``
 
 export const FloatButton = styled.TouchableOpacity`
   width: 50px;
