@@ -2,14 +2,13 @@ import { CardProductOnpress, CardProductColumn, CardProductContainer, CardProduc
 import Select from "../../assets/ArrowRight.svg"
 
 const CardProduct = ({ item }) => {
-  const { image, name } = item;
+  const { name, description, url } = item;
   return (
     <CardProductContainer>
-
-      <CardProductImage {...{ source: { uri: image } }} />
+      <CardProductImage {...{ source: { uri: url } }} />
       <CardProductColumn>
         <CardProductTitle>{name}</CardProductTitle>
-        <CardProductSubTitle>{name}</CardProductSubTitle>
+        <CardProductSubTitle>{description}</CardProductSubTitle>
       </CardProductColumn>
       <CardProductOnpress>
         <Select />

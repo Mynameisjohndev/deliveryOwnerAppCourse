@@ -7,10 +7,19 @@ import { useState } from "react";
 import { ScreenTemplate } from "../../../compontens/ScreenTemplate";
 import { Button } from "../../../compontens/Button";
 import { CardProduct } from "../../../compontens/CardProduct";
+import { useEffect } from "react";
+import { getAllProducts } from "./services";
+import { ActivityIndicator } from "react-native";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
+  const [data, setData] = useState([]);
+  const [loadingData, setLoadingData] = useState(false);
   const { user } = useContextApp();
+
+  useEffect(() => {
+    getAllProducts({ setData, setLoadingData });
+  }, [])
 
   const Header = () => {
     return (
@@ -36,11 +45,16 @@ const Home = () => {
             value: searchItem,
             onChangeText: setSearchItem
           }} />
-          <CustomFlatList {...{
-            data: [],
-            keyExtractor: (item) => item.id,
-            renderItem: ({ item }) => <CardProduct  {...{ item }} />,
-          }} />
+
+          <>
+            {loadingData ? <ActivityIndicator color="white" size="large" /> : (
+              <CustomFlatList {...{
+                data,
+                keyExtractor: (item) => item.id,
+                renderItem: ({ item }) => <CardProduct  {...{ item }} />,
+              }} />
+            )}
+          </>
 
           <Button {...{
             title: "Novo lanche",
