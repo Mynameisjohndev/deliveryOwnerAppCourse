@@ -8,11 +8,11 @@ import { ScreenTemplate } from "../../../compontens/ScreenTemplate";
 import { Button } from "../../../compontens/Button";
 import { CardProduct } from "../../../compontens/CardProduct";
 import { useEffect } from "react";
-import { getAllProducts } from "./services";
+import { getAllProducts, searchOneProduct } from "./services";
 import { ActivityIndicator } from "react-native";
 
 const Home = () => {
-  const [searchItem, setSearchItem] = useState("");
+  const [searchProduct, setSearchProduct] = useState("");
   const [data, setData] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
   const { user } = useContextApp();
@@ -20,6 +20,10 @@ const Home = () => {
   useEffect(() => {
     getAllProducts({ setData, setLoadingData });
   }, [])
+
+  useEffect(() => {
+    searchOneProduct({ setData, searchProduct });
+  }, [searchProduct]);
 
   const Header = () => {
     return (
@@ -42,8 +46,8 @@ const Home = () => {
         <>
           <Search {...{
             placeholder: "Procura item ...",
-            value: searchItem,
-            onChangeText: setSearchItem
+            value: searchProduct,
+            onChangeText: setSearchProduct
           }} />
 
           <>
