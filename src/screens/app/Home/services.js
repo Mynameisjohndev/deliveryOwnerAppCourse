@@ -39,4 +39,8 @@ const searchOneProduct = ({ setData, searchProduct }) => {
   setData(filter);
 }
 
-export { getAllProducts, searchOneProduct }
+const handleToSelectedItem = ({ item, navigate }) => {
+  return navigate("selectedItem", { item })
+}
+
+export { getAllProducts, searchOneProduct, handleToSelectedItem }

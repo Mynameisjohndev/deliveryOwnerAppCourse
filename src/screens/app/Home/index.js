@@ -8,14 +8,16 @@ import { ScreenTemplate } from "../../../compontens/ScreenTemplate";
 import { Button } from "../../../compontens/Button";
 import { CardProduct } from "../../../compontens/CardProduct";
 import { useEffect } from "react";
-import { getAllProducts, searchOneProduct } from "./services";
+import { getAllProducts, handleToSelectedItem, searchOneProduct } from "./services";
 import { ActivityIndicator } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
   const [searchProduct, setSearchProduct] = useState("");
   const [data, setData] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
   const { user } = useContextApp();
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     getAllProducts({ setData, setLoadingData });
@@ -24,7 +26,6 @@ const Home = () => {
   useEffect(() => {
     searchOneProduct({ setData, searchProduct });
   }, [searchProduct]);
-
   const Header = () => {
     return (
       <HeaderContainer>
@@ -55,7 +56,7 @@ const Home = () => {
               <CustomFlatList {...{
                 data,
                 keyExtractor: (item) => item.id,
-                renderItem: ({ item }) => <CardProduct  {...{ item }} />,
+                renderItem: ({ item }) => <CardProduct  {...{ item, onPress: () => handleToSelectedItem({item, navigate}) }} />,
               }} />
             )}
           </>

@@ -1,7 +1,7 @@
 import { CardProductOnpress, CardProductColumn, CardProductContainer, CardProductImage, CardProductSubTitle, CardProductTitle } from "./styles"
 import Select from "../../assets/ArrowRight.svg"
 
-const CardProduct = ({ item }) => {
+const CardProduct = ({ item, onPress }) => {
   const { name, description, url } = item;
   return (
     <CardProductContainer>
@@ -10,7 +10,7 @@ const CardProduct = ({ item }) => {
         <CardProductTitle>{name}</CardProductTitle>
         <CardProductSubTitle>{description}</CardProductSubTitle>
       </CardProductColumn>
-      <CardProductOnpress>
+      <CardProductOnpress {...{onPress}}>
         <Select />
       </CardProductOnpress>
     </CardProductContainer>
