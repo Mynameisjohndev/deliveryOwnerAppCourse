@@ -12,7 +12,8 @@ const getAllProducts = ({ setData, setLoadingData }) => {
     .then((response) => {
       let products = [];
       for (let doc in response.docs) {
-        products.push(response.docs[doc].data());
+        const item = response.docs[doc]
+        products.push({...item.data(), docid: item.id});
       }
       localData = products;
       setData(products);

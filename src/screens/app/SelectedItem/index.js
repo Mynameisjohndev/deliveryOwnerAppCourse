@@ -3,15 +3,24 @@ import { ScreenTemplate } from "../../../compontens/ScreenTemplate"
 import { Button } from "../../../compontens/Button";
 import { SelectedItemColumn, SelectedItemContainerImage, SelectedItemDescription, SelectedItemImage, SelectedItemLabel, SelectedItemScrollColumn, SelectedItemTitle } from "./styles";
 import { useState } from "react";
+import { handleEditProduct } from "./services";
 
 const SelectedItem = () => {
 
   const route = useRoute();
   const { item } = route.params;
-  const { url, name, description, price } = item;
+  const { url, name, description, price, docid } = item;
   const [title, setTitle] = useState(name);
   const [itemDescription, setItemDescription] = useState(description);
-  const [itemPrice, setItemPrice] = useState(price);
+  const [itemPrice, setItemPrice] = useState(price || 0);
+
+  const dataEditProduct = {
+    docid,
+    title,
+    itemDescription,
+    itemPrice
+  }
+
   return (
     <ScreenTemplate {...{
       children: <>
@@ -40,7 +49,7 @@ const SelectedItem = () => {
           <Button {...{
             title: "Salvar alterações",
             type: "primary",
-            onPress: () => null,
+            onPress: () => handleEditProduct(dataEditProduct),
             style: {
               width: "100%"
             }
