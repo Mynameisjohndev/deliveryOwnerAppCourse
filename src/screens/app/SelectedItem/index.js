@@ -4,6 +4,7 @@ import { Button } from "../../../compontens/Button";
 import { SelectedItemColumn, SelectedItemContainerImage, SelectedItemDescription, SelectedItemImage, SelectedItemLabel, SelectedItemScrollColumn, SelectedItemTitle } from "./styles";
 import { useState } from "react";
 import { hadnleRemoveProduct, handleEditProduct } from "./services";
+import { BackButton } from "../../../compontens/BackButton";
 
 const SelectedItem = () => {
 
@@ -24,9 +25,7 @@ const SelectedItem = () => {
 
   return (
     <ScreenTemplate {...{
-      children: <>
-
-      </>,
+      children: <><BackButton {...{goBack}}/></>,
       secondChildren: <>
 
         <SelectedItemColumn style={{ marginTop: -80 }}>
