@@ -3,14 +3,14 @@ import Image from "../../../assets/firstbackground.png";
 import { CustomHeaderTitle } from "../../../compontens/CustomHeaderTitle";
 import { useContextApp } from "../../../context";
 import { Search } from "../../../compontens/Search";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { ScreenTemplate } from "../../../compontens/ScreenTemplate";
 import { Button } from "../../../compontens/Button";
 import { CardProduct } from "../../../compontens/CardProduct";
 import { useEffect } from "react";
 import { getAllProducts, handleToSelectedItem, searchOneProduct } from "./services";
 import { ActivityIndicator } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 const Home = () => {
   const [searchProduct, setSearchProduct] = useState("");
@@ -19,13 +19,14 @@ const Home = () => {
   const { user } = useContextApp();
   const { navigate } = useNavigation();
 
-  useEffect(() => {
-    getAllProducts({ setData, setLoadingData });
-  }, [])
+  useFocusEffect(useCallback(() => {
+    getAllProducts({ setData, setLoadingData }); 
+  },[]))
 
   useEffect(() => {
     searchOneProduct({ setData, searchProduct });
   }, [searchProduct]);
+
   const Header = () => {
     return (
       <HeaderContainer>

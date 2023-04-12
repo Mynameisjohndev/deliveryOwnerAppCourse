@@ -4,16 +4,7 @@ import { Alert } from "react-native";
 const { firestore } = firebase;
 
 const handleEditProduct = (item) => {
-  const { docid, title,
-    itemDescription,
-    itemPrice } = item;
-
-  console.log({
-    docid, title,
-    itemDescription,
-    itemPrice
-  })
-
+  const { docid, title, itemDescription, itemPrice } = item;
   firestore()
     .collection("products")
     .doc(docid)
@@ -28,4 +19,19 @@ const handleEditProduct = (item) => {
     })
 }
 
-export { handleEditProduct }
+const hadnleRemoveProduct = ({ item, goBack }) => {
+  const { docid } = item;
+  Alert.alert("Exclusão", "Deseja remover este produto?", [
+    { text: "Não", style: "cancel" },
+    { text: "Sim", onPress: () => {
+      firestore()
+      .collection("products")
+      .doc(docid).delete().then(() => {
+        Alert.alert("Concluido", "Seu produto foi removido com sucesso!");
+        return goBack();
+      })
+    }}
+  ])
+}
+
+export { handleEditProduct, hadnleRemoveProduct }

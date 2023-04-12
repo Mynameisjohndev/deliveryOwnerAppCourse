@@ -1,9 +1,9 @@
-import { useRoute } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import { ScreenTemplate } from "../../../compontens/ScreenTemplate"
 import { Button } from "../../../compontens/Button";
 import { SelectedItemColumn, SelectedItemContainerImage, SelectedItemDescription, SelectedItemImage, SelectedItemLabel, SelectedItemScrollColumn, SelectedItemTitle } from "./styles";
 import { useState } from "react";
-import { handleEditProduct } from "./services";
+import { hadnleRemoveProduct, handleEditProduct } from "./services";
 
 const SelectedItem = () => {
 
@@ -13,8 +13,9 @@ const SelectedItem = () => {
   const [title, setTitle] = useState(name);
   const [itemDescription, setItemDescription] = useState(description);
   const [itemPrice, setItemPrice] = useState(price || 0);
+  const { goBack } = useNavigation();
 
-  const dataEditProduct = {
+  const dataProduct = {
     docid,
     title,
     itemDescription,
@@ -49,14 +50,14 @@ const SelectedItem = () => {
           <Button {...{
             title: "Salvar alterações",
             type: "primary",
-            onPress: () => handleEditProduct(dataEditProduct),
+            onPress: () => handleEditProduct(dataProduct),
             style: {
               width: "100%"
             }
           }} />
           <Button {...{
             title: "Remover lanche",
-            onPress: () => null,
+            onPress: () =>  hadnleRemoveProduct({ item: dataProduct, goBack }),
             style: {
               width: "100%"
             }
