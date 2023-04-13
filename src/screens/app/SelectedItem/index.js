@@ -21,7 +21,8 @@ const SelectedItem = () => {
     docid,
     title,
     itemDescription,
-    itemPrice
+    itemPrice,
+    image: image.uri ? image : url
   }
 
   return (
