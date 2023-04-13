@@ -3,7 +3,7 @@ import { ScreenTemplate } from "../../../compontens/ScreenTemplate"
 import { Button } from "../../../compontens/Button";
 import { SelectedItemColumn, SelectedItemContainerImage, SelectedItemDescription, SelectedItemImage, SelectedItemLabel, SelectedItemScrollColumn, SelectedItemTitle } from "./styles";
 import { useState } from "react";
-import { hadnleRemoveProduct, handleEditProduct } from "./services";
+import { hadnleRemoveProduct, handleEditProduct, handleSelectImage } from "./services";
 import { BackButton } from "../../../compontens/BackButton";
 
 const SelectedItem = () => {
@@ -11,6 +11,7 @@ const SelectedItem = () => {
   const route = useRoute();
   const { item } = route.params;
   const { url, name, description, price, docid } = item;
+  const [image, setImage] = useState({});
   const [title, setTitle] = useState(name);
   const [itemDescription, setItemDescription] = useState(description);
   const [itemPrice, setItemPrice] = useState(price || 0);
@@ -29,8 +30,10 @@ const SelectedItem = () => {
       secondChildren: <>
 
         <SelectedItemColumn style={{ marginTop: -80 }}>
-          <SelectedItemContainerImage>
-            <SelectedItemImage {...{ source: { uri: url } }} />
+          <SelectedItemContainerImage {...{
+            onPress: () => handleSelectImage(setImage)
+          }}>
+            <SelectedItemImage {...{ source: { uri: image.uri ? image.uri : url } }} />
           </SelectedItemContainerImage>
           <SelectedItemTitle  {...{ value: title, onChangeText: setTitle }} />
         </SelectedItemColumn>
