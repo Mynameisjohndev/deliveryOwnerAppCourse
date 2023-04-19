@@ -13,7 +13,7 @@ const getAllProducts = ({ setData, setLoadingData }) => {
       let products = [];
       for (let doc in response.docs) {
         const item = response.docs[doc]
-        products.push({...item.data(), docid: item.id});
+        products.push({ ...item.data(), docid: item.id });
       }
       localData = products;
       setData(products);
@@ -26,14 +26,14 @@ const getAllProducts = ({ setData, setLoadingData }) => {
 }
 
 const searchOneProduct = ({ setData, searchProduct }) => {
-  if(searchProduct === ""){
+  if (searchProduct === "") {
     return setData(localData);
   }
   const filter = localData.filter((item) => {
-    if(item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
-    .indexOf(searchProduct.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()) > -1){
+    if (item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+      .indexOf(searchProduct.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()) > -1) {
       return true;
-    }else{
+    } else {
       return false;
     }
   });
@@ -44,4 +44,8 @@ const handleToSelectedItem = ({ item, navigate }) => {
   return navigate("selectedItem", { item })
 }
 
-export { getAllProducts, searchOneProduct, handleToSelectedItem }
+const handleToNewItem = ({ navigate }) => {
+  return navigate("newItem")
+}
+
+export { getAllProducts, searchOneProduct, handleToSelectedItem, handleToNewItem }

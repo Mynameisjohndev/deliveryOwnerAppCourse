@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { getAllProducts, handleToSelectedItem, searchOneProduct } from "./services";
 import { ActivityIndicator } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { handleToNewItem } from "./services";
 
 const Home = () => {
   const [searchProduct, setSearchProduct] = useState("");
@@ -56,15 +57,15 @@ const Home = () => {
             {loadingData ? <ActivityIndicator color="white" size="large" /> : (
               <CustomFlatList {...{
                 data,
-                keyExtractor: (item) => item.id,
-                renderItem: ({ item }) => <CardProduct  {...{ item, onPress: () => handleToSelectedItem({item, navigate}) }} />,
+                keyExtractor: (_, index) => index,
+                renderItem: ({ item, _}) => <CardProduct  {...{ item, onPress: () => handleToSelectedItem({item, navigate})}} />,
               }} />
             )}
           </>
 
           <Button {...{
             title: "Novo lanche",
-            onPress: () => null,
+            onPress: () => handleToNewItem({navigate }),
             style: {
               width: "85%"
             }
