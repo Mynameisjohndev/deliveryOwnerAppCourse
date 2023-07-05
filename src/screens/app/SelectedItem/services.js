@@ -1,9 +1,9 @@
 import { firebase } from "@react-native-firebase/firestore";
+const { firestore } = firebase;
 import storage from "@react-native-firebase/storage";
 import { Alert, PermissionsAndroid } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
-const { firestore } = firebase;
 
 const handleEditProduct = async (item) => {
   const { docid, title, itemDescription, itemPrice, image } = item;

@@ -3,12 +3,13 @@ import { ScreenTemplate } from "../../../compontens/ScreenTemplate"
 import Image from "../../../assets/firstbackground.png";
 import { CustomFlatList, HeaderBackgroudImage, HeaderContainer } from "../../../global";
 import { useEffect } from "react";
-import { getAllClients } from "./services";
+import { getAllClients, handleNavigateToSelectedClient } from "./services";
 import { useContextApp } from "../../../context";
 import { useState } from "react";
 import { Search } from "../../../compontens/Search";
 import { ActivityIndicator, View } from "react-native";
 import { CardClient } from "../../../compontens/CardClient";
+import { useNavigation } from "@react-navigation/native";
 
 const Client = () => {
 
@@ -16,7 +17,7 @@ const Client = () => {
   const [loadingData, setLoadingData] = useState(false);
   const [searchClient, setSearchClient] = useState("");
   const { user } = useContextApp();
-
+  const { navigate } = useNavigation();
   useEffect(() => {
     getAllClients({ setData, setLoadingData, user })
   }, [])
@@ -28,7 +29,7 @@ const Client = () => {
         <CustomHeaderTitle
           {...{
             title: `Seus clientes`,
-            subtitle: "Acompanhar pedidosi"
+            subtitle: "Acompanhar clientes"
           }}
         />
       </HeaderContainer>
@@ -52,7 +53,7 @@ const Client = () => {
               keyExtractor: (_, index) => index,
               renderItem: ({ item, _ }) => <CardClient {...{
                 item,
-                onPress: () => console.log("clique")
+                onPress: () => handleNavigateToSelectedClient({navigate, client: item})
               }}/>,
             }} />
           )}

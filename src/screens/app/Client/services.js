@@ -27,4 +27,8 @@ const getAllClients = ({ setData, setLoadingData, user }) => {
     })
 }
 
-export { getAllClients }
+const handleNavigateToSelectedClient = ({ navigate, client }) => {
+  navigate("selectedclient", { client });
+}
+
+export { getAllClients, handleNavigateToSelectedClient }
