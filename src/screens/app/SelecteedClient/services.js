@@ -11,7 +11,7 @@ const loadClientOrders = ({ client, setLoading, setOrders }) => {
       let orders = [];
       for (let doc in response.docs) {
         const item = response.docs[doc]
-        orders.push(item.data());
+        orders.push({...item.data(), docid: item.id});
       }
       setOrders(orders);
       return setLoading(false);

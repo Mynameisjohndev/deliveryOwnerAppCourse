@@ -44,7 +44,7 @@ export const CardClientOrderPrice = styled.Text`
 `
 
 export const CardClientOrderStatus = styled.View`
-  width: 80%;
+  /* width: 80%; */
   justify-content: center;
   align-items: center;
   border-radius: 25px;

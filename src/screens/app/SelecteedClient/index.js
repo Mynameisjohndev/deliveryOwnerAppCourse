@@ -43,7 +43,7 @@ const SelecteedClient = () => {
           <CustomFlatList {...{
             data: orders,
             keyExtractor: (_, index) => index,
-            renderItem: ({item, _}) => <CardClientOrder  {...{ order: item}} />,
+            renderItem: ({item, _}) => <CardClientOrder  {...{ order: item, client}} />,
           }} />
         )}
       </>

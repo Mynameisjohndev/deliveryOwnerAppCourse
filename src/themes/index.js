@@ -8,6 +8,7 @@ export default {
       Placeholder: '#B7B7B7',
       PREPARATION: '#C93636',
       DELIVERIED: '#31AF91',
-      ROW_COLOR: '#CECECE'
+      ROW_COLOR: '#CECECE',
+      MODAL: "#F6F6F6"
   },
 };
