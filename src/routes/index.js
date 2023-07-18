@@ -5,5 +5,5 @@ import { LoadScreen } from "../screens/auth/LoadScreen";
 
 export const Routes = () => {
   const { user, authLoading } = useContextApp();
-  return authLoading ? <LoadScreen /> :  user ? <AppScreens/> : <AuthScreens/>
+  return authLoading ? <LoadScreen /> :  !!user.uid ? <AppScreens/> : <AuthScreens/>
 }

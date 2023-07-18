@@ -9,7 +9,7 @@ const AppStack = createNativeStackNavigator();
 
 export const AppScreens = () => {
   return (
-    <AppStack.Navigator screenOptions={{ headerShown: false }}>
+    <AppStack.Navigator screenOptions={{ headerShown: false }} initialRouteName="home">
       <AppStack.Screen name="client" component={Client} />
       <AppStack.Screen name="selectedclient" component={SelecteedClient} />
       <AppStack.Screen name="home" component={Home} />

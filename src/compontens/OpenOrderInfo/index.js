@@ -22,7 +22,7 @@ const OpenOrderInfo = ({ order, visible, action, client }) => {
   }, [firstOption, secondOption]);
 
   return (
-    <OpenOrderInfoContainer visible={visible}>
+    <OpenOrderInfoContainer visible={visible} statusBarTranslucent>
       <OpenOrderInfoOverlay onPress={action}>
         <OpenOrderInfoContent>
           <OpenOrderInfoPressToClose onPress={action}>

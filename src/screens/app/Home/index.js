@@ -12,6 +12,7 @@ import { getAllProducts, handleToSelectedItem, searchOneProduct } from "./servic
 import { ActivityIndicator } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { handleToNewItem } from "./services";
+import { FloatingMenu } from "../../../compontens/FloatingMenu";
 
 const Home = () => {
   const [searchProduct, setSearchProduct] = useState("");
@@ -21,8 +22,8 @@ const Home = () => {
   const { navigate } = useNavigation();
 
   useFocusEffect(useCallback(() => {
-    getAllProducts({ setData, setLoadingData }); 
-  },[]))
+    getAllProducts({ setData, setLoadingData });
+  }, []))
 
   useEffect(() => {
     searchOneProduct({ setData, searchProduct });
@@ -44,7 +45,11 @@ const Home = () => {
 
   return (
     <ScreenTemplate {...{
-      children: <Header />,
+      children:
+        <>
+          <Header />
+          <FloatingMenu />
+        </>,
       secondChildren:
         <>
           <Search {...{
@@ -58,14 +63,14 @@ const Home = () => {
               <CustomFlatList {...{
                 data,
                 keyExtractor: (_, index) => index,
-                renderItem: ({ item, _}) => <CardProduct  {...{ item, onPress: () => handleToSelectedItem({item, navigate})}} />,
+                renderItem: ({ item, _ }) => <CardProduct  {...{ item, onPress: () => handleToSelectedItem({ item, navigate }) }} />,
               }} />
             )}
           </>
 
           <Button {...{
             title: "Novo lanche",
-            onPress: () => handleToNewItem({navigate }),
+            onPress: () => handleToNewItem({ navigate }),
             style: {
               width: "85%"
             }

@@ -7,7 +7,7 @@ import { storage_user_key } from "../config";
 const Context = createContext({});
 
 const ContextAppProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [authLoading, setAuthLoading] = useState(false);
 
   const { auth } = firebase;
@@ -53,6 +53,11 @@ const ContextAppProvider = ({ children }) => {
     }
   }
 
+  const  signoutUser = () => {
+    // AsyncStorage.removeItem(storage_user_key);
+    setUser({});
+  }
+
   useEffect(() => {
     loadAuthenticatedUser();
   }, [])
@@ -62,7 +67,8 @@ const ContextAppProvider = ({ children }) => {
       user,
       setUser,
       handleLoginUser,
-      authLoading
+      authLoading,
+      signoutUser
     }}>
       {children}
     </Context.Provider>

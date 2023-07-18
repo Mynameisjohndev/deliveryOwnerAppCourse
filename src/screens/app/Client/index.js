@@ -10,6 +10,7 @@ import { Search } from "../../../compontens/Search";
 import { ActivityIndicator, View } from "react-native";
 import { CardClient } from "../../../compontens/CardClient";
 import { useNavigation } from "@react-navigation/native";
+import { BackButton } from "../../../compontens/BackButton";
 
 const Client = () => {
 
@@ -17,7 +18,8 @@ const Client = () => {
   const [loadingData, setLoadingData] = useState(false);
   const [searchClient, setSearchClient] = useState("");
   const { user } = useContextApp();
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
+
   useEffect(() => {
     getAllClients({ setData, setLoadingData, user })
   }, [])
@@ -38,7 +40,11 @@ const Client = () => {
 
   return (
     <ScreenTemplate {...{
-      children: <Header />,
+      children:
+      <>
+      <Header />
+      <BackButton {...{goBack}}/>
+      </>, 
       secondChildren: <>
         <Search {...{
           placeholder: "Procura cliente ...",
